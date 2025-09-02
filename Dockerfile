@@ -1,20 +1,20 @@
-# Imagem base
-FROM node:20-alpine
+# Base image
+FROM node:18
 
-# Criar diretório da aplicação
-WORKDIR /app
+# Create app directory
+WORKDIR /usr/src/app
 
-# Copiar arquivos de dependência
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
 COPY package*.json ./
 
-# Instalar dependências
-RUN npm install --production
+# Install app dependencies
+RUN npm install
 
-# Copiar o restante da aplicação
+# Bundle app source
 COPY . .
 
-# Expor a porta (se for usar API com express, ajuste para 3000)
-EXPOSE 80
+# Start the server using the production build
+CMD [ "node", "admin.js" ]
 
-# Comando de inicialização
-CMD ["node", "admin.js"]
+# Exposing server port
+EXPOSE 80

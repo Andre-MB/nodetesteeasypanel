@@ -5,13 +5,21 @@ const app = express();
 const PORT = 80;
 
 async function createConnection() {
-  return mysql.createConnection({
-    host:  'serverdedadossql',
-    user:  'andre',
-    password:  'magMys123',
-    database:'sce_teste',
-    port:  3306
-  });
+  for (let i = 0; i < 5; i++) {
+    try {
+      return await mysql.createConnection({
+        host: 'serverdedadossql',
+        user: 'andre',
+        password: 'magMys123',
+        database: 'sce_teste',
+        port: 3306
+      });
+    } catch (err) {
+      console.log('Tentando reconectar ao MySQL...');
+      await new Promise(r => setTimeout(r, 3000));
+    }
+  }
+  throw new Error('Não foi possível conectar ao MySQL');
 }
 
 // Rota GET para buscar usuários

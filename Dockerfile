@@ -14,7 +14,7 @@ RUN npm install --production
 COPY . .
 
 # Expor a porta (se for usar API com express, ajuste para 3000)
-EXPOSE 3000
+EXPOSE 80
 
 # Comando de inicialização
 CMD ["node", "admin.js"]

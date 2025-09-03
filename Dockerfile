@@ -17,4 +17,4 @@ COPY . .
 CMD [ "node", "admin.js" ]
 
 # Exposing server port
-EXPOSE 80
+EXPOSE 6000

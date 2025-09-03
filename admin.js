@@ -2,7 +2,7 @@ const express = require('express');
 const mysql = require('mysql2/promise');
 
 const app = express();
-const PORT = 80;
+const PORT = 6000;
 
 async function createConnection() {
   for (let i = 0; i < 5; i++) {
